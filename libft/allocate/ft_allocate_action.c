@@ -12,6 +12,14 @@
 
 #include "../include/ft_allocate.h"
 
+static void	*error_cleanup(t_program *prog)
+{
+	(void)prog;
+	ft_putstr_fd_sa(ERR_MALLOC_FAILED, STDERR_FILENO);
+	exit(ERROR);
+	return (NULL);
+}
+
 void	*allocate_ptr(t_program *prog, t_allocation_node **head, size_t size)
 {
 	void	*ptr;

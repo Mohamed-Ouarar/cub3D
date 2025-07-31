@@ -12,14 +12,6 @@
 
 #include "../include/ft_allocate.h"
 
-void	*error_cleanup(t_program *prog)
-{
-	(void)prog;
-	ft_putstr_fd_sa(ERR_MALLOC_FAILED, STDERR_FILENO);
-	exit(ERROR);
-	return (NULL);
-}
-
 void	*ft_allocate(
 	t_program *prog, size_t size, t_action action, void *ptr)
 {
@@ -28,7 +20,7 @@ void	*ft_allocate(
 	void						*result;
 
 	result = ptr;
-	if (prog && !ptr_prog)
+	if (action == INIT && prog && !ptr_prog)
 		ptr_prog = prog;
 	if (action == ALLOCATE)
 		result = allocate_ptr(ptr_prog, &allocations, size);
