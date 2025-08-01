@@ -6,7 +6,7 @@
 /*   By: mait-you <mait-you@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 08:58:35 by mait-you          #+#    #+#             */
-/*   Updated: 2025/07/30 18:00:23 by mait-you         ###   ########.fr       */
+/*   Updated: 2025/08/01 09:43:32 by mait-you         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static void	*free_args(char **array)
 	return (ft_allocate(NULL, 0, FREE_ONE, array));
 }
 
-static char	**split_cor(char const *s, char c, char	**ptr)
+static char	**split_core(char const *s, char c, char	**ptr)
 {
 	int	len;
 	int	i;
@@ -79,5 +79,5 @@ char	**ft_split(char const *s, char c)
 		return (NULL);
 	ptr = (char **)ft_allocate(\
 		NULL, (count_words(s, c) + 1) * sizeof(char *), ALLOCATE, NULL);
-	return (split_cor(s, c, ptr));
+	return (split_core(s, c, ptr));
 }

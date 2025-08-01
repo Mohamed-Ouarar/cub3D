@@ -46,7 +46,9 @@ void	cleanup_exit(t_program *prog)
 		mlx_destroy_image(prog->mlx_ptr, prog->config.east_tex);
 	if (prog->mlx_ptr && prog->win_ptr)
 		mlx_destroy_window(prog->mlx_ptr, prog->win_ptr);
-	ft_close(&prog->fd_map);
+	ft_close(&prog->fd_file_path_tex);
+	ft_close(&prog->fd_file_path_color);
+	ft_close(&prog->fd_file_path_map);
 	prog = ft_allocate(NULL, 0, FREE_ALL, NULL);
 	exit(ERROR);
 }
@@ -56,4 +58,19 @@ void	error_cleanup_exit(
 {
 	error_msg(msg_type, the_error, msg);
 	cleanup_exit(prog);
+}
+
+void	ft_free_args(char **str)
+{
+	int	i;
+
+	if (!str)
+		return;
+	i = 0;
+	while (str && str[i])
+	{
+		str[i] = ft_allocate(NULL, 0, FREE_ONE, str[i]);
+		i++;
+	}
+	str = ft_allocate(NULL, 0, FREE_ONE, str);
 }

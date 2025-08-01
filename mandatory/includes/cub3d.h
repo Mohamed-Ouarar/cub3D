@@ -23,6 +23,7 @@ typedef enum e_dir			t_dir;
 
 enum e_dir
 {
+	NO_DIR,
 	NORTH,
 	SOUTH,
 	WEST,
@@ -54,8 +55,10 @@ struct s_program
 {
 	void		*mlx_ptr;
 	void		*win_ptr;
-	int			fd_map;
 	char		*file_path;
+	int			fd_file_path_tex;
+	int			fd_file_path_color;
+	int			fd_file_path_map;
 	t_config	config;
 };
 

@@ -1,45 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing_utils.c                                    :+:      :+:    :+:   */
+/*   pasing_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mait-you <mait-you@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/31 14:23:53 by mait-you          #+#    #+#             */
-/*   Updated: 2025/08/01 10:59:05 by mait-you         ###   ########.fr       */
+/*   Created: 2025/07/31 09:15:19 by mait-you          #+#    #+#             */
+/*   Updated: 2025/08/01 11:36:57 by mait-you         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-bool is_white_space(char c)
+static int pars_map(t_config *config)
 {
-	return (c == ' ' || (c >= '\t' && c <= '\r'));
-}
-
-int	ft_close(int *fd)
-{
-	if (*fd == -1)
-		return (ERROR);
-	close(*fd);
-	*fd = -1;
 	return (SUCCESS);
 }
 
-int	is_emty_line(char *line)
+int get_map(t_program *prog, t_config *config)
 {
-	while (line && is_white_space(*line))
-		line++;
-	if (!*line || *line == '\n')
-		return (SUCCESS);
-	return (ERROR);
-}
+	char				*line;
 
-int	skip_white_space(char **str)
-{
-	if (!str || !*str)
-		return (ERROR);
-	while (**str && is_white_space(**str))
-		(*str)++;
+	line = get_next_line(prog->fd_map);
+	while (line)
+	{
+		if (pars_map(map, line, &valid) == ERROR)
+			return (ft_allocate(NULL, 0, FREE_ONE, line), ERROR);
+		line = ft_allocate(NULL, 0, FREE_ONE, line);
+		line = get_next_line(prog->fd_map);
+	}
 	return (SUCCESS);
 }

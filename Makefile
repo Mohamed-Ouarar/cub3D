@@ -70,6 +70,7 @@ SRCS = \
 	mandatory/srcs/main.c \
 	mandatory/srcs/parsing/pasing.c \
 	mandatory/srcs/parsing/pasing_textures.c \
+	mandatory/srcs/parsing/pasing_colors.c \
 	mandatory/srcs/cleanup/error_msg.c \
 	mandatory/srcs/utils/parsing_utils.c 
 

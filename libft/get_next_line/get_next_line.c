@@ -6,7 +6,7 @@
 /*   By: mait-you <mait-you@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/13 09:24:59 by mait-you          #+#    #+#             */
-/*   Updated: 2025/07/30 18:10:11 by mait-you         ###   ########.fr       */
+/*   Updated: 2025/08/01 13:59:39 by mait-you         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,15 +65,15 @@ static char	*get_line(int fd, char *backup_line, char *buffer)
 
 char	*get_next_line(int fd)
 {
-	static char		*backup_line;
+	static char		*backup_lines[FD_SETSIZE];
 	char			buffer[BUFFER_SIZE + 1];
 	char			*line;
 
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, buffer, 0) == -1)
 		return (NULL);
-	backup_line = get_line(fd, backup_line, buffer);
-	if (!backup_line)
+	backup_lines[fd] = get_line(fd, backup_lines[fd], buffer);
+	if (!backup_lines[fd])
 		return (NULL);
-	line = get_clean_line(&backup_line);
+	line = get_clean_line(&backup_lines[fd]);
 	return (line);
 }
